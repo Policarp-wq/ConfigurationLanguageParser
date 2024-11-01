@@ -1,6 +1,7 @@
 import lark.exceptions
 from lark import Lark, Transformer, v_args
 from yaml import load, dump
+import argparse
 
 grammar = r'''start: constant_declaration* (constant_declaration | assign_value)*
 
@@ -86,7 +87,6 @@ class ConfigTransformer(Transformer):
         return v
 
 
-
 def parse_text(text):
     lang_parser = Lark(grammar)
     try:
@@ -103,16 +103,20 @@ def convert_to_yaml(constants):
     return (dump(constants)).strip()
 
 
+def main():
+    inp = input('Enter code (print stop to stop)\n')
+    text = ''
+    while inp != 'stop':
+        text += inp + '\n'
+        inp = input()
+    res = convert_to_yaml(parse_text(text))
+    parser = argparse.ArgumentParser(description="Parse language")
+    parser.add_argument('--path', type=str, required=True, help='Path to the output file')
+    file = parser.parse_args().path
+    yaml = open(file, 'w')
+    yaml.write(res)
+    yaml.close()
 
-text = r'''general sus = $7 $7 8 +$ +$;
-general mda = $7 $1 5 max$ +$;
-general lol = (1, $-100 -200 max$, 3);
-general mx = $-5 10 max$;
-mx = $10 5 -$;
-'''
 
-text = r'general test = (1, 2,3);'
-print(convert_to_yaml(parse_text(text)))
-
-
-
+if __name__ == "__main__":
+    main()
