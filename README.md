@@ -75,7 +75,7 @@ pip install -r requirements.txt
 ```
 4) Запускаем скрипт
 ```bash
-py .\visualizer.py --path [Путь к файлу для записи] 
+py .\parser.py --path [Путь к файлу для записи] 
 ```
 
 
