@@ -86,6 +86,9 @@ py .\visualizer.py --path [Путь к файлу для записи]
 
 Вывод: 
 
+![image](https://github.com/user-attachments/assets/b0d91577-2cb3-408a-a27c-45ec64d94226)
+
+
 
 
 
